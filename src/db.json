@@ -1,0 +1,15 @@
+{
+    "logins":[{
+        "username": "john",
+        "password": "12345678"
+    },{
+        "username": "thuy",
+        "password": "12345678"
+    } 
+],
+    "user": [{
+    "username": "ImANewUser",
+    "avatar": "https://robohash.org/imanewuser.png",
+    "bio": "A new user to the app."
+  }]
+}
