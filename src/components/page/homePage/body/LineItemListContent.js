@@ -1,7 +1,11 @@
 import React from 'react';
-import '../../../../styles/LineItemListContent.css'
+import '../../../../styles/LineItemListContent.css';
+import Table from './table';
+import data from '../../../../db.json';
 
 export default () => {
+
+    const lineItemData= data.lineItemTable
     return (
         <>
             <div className="line_item_h row">
@@ -94,30 +98,7 @@ export default () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div className="round1">
-                                        <input type="checkbox" id="checkbox"/>
-                                        <label htmlFor="checkbox" />
-                                    </div>
-                                </td>
-                                <td>123</td>
-                                <td>
-                                    <p>USB cho PC</p>
-                                    <p>DAC VietNam/DHBK</p>
-                                </td>
-                                <td>
-                                    <div className="round1">
-                                        <input type="checkbox" id="checkbox1"/>
-                                        <label htmlFor="checkbox1" />
-                                    </div>
-                                </td>
-                                <td>1000s</td>
-                                <td>2020-07-08</td>
-                                <td>2020-08-01</td>
-                                <td>2020-08-01 18:22:01</td>
-                                <td><i className="fa fa-external-link" aria-hidden="true"></i></td>
-                            </tr>
+                            <Table col="9" dt={lineItemData}></Table>
                         </tbody>
                     </table>
             </div>

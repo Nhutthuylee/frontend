@@ -1,7 +1,9 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import '../../../../styles/CampaignListContent.css';
-import '../../../../../node_modules/react-datepicker/dist/react-datepicker.css'
+import '../../../../../node_modules/react-datepicker/dist/react-datepicker.css';
+import Table from './table';
+import data from "../../../../db.json";
 
 class campaignListContent extends React.Component {
     state = {
@@ -19,7 +21,12 @@ class campaignListContent extends React.Component {
             endDate: edate
         });
     }
+
+    
     render() {
+
+        const cp = data.capampaignTable
+        console.log(cp)
         return (
             <>
                 <div className="campaign_h row">
@@ -96,113 +103,21 @@ class campaignListContent extends React.Component {
                 </div>
 
                 <div className="campaign_b">
-                    <table className="table table-borderless">
-                        <thead className="thead-light">
-                            <tr>
-                                <th scope="col">Campaign name</th>
-                                <th scope="col"><i className="fa fa-exclamation-circle fa-2x" aria-hidden="true" /></th>
-                                <th scope="col">Overall budget</th>
-                                <th scope="col">Curently used amount</th>
-                                <th scope="col">Curently usage rate</th>
-                                <th scope="col">start date</th>
-                                <th scope="col"> End date</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th>Covid 19 - sell mark</th>
-                            </tr>
-                            <tr>
-                            
-                                <td>
-                                    <div>
-                                        <p>[123]</p>
-                                        <p>DAC Viet Nam sell mark 3D</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="round1">
-                                        <input type="checkbox" id="checkbox"/>
-                                        <label htmlFor="checkbox" />
-                                    </div>
-                                </td>
-                                <td>2000s</td>
-                                <td>10s</td>
-                                <td>0.5%</td>
-                                <td>2020-07-01</td>
-                                <td>2020-08-01</td>
-                                <td><i className="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>
-                                        <p>[123]</p>
-                                        <p>DAC Viet Nam sell mark 3D</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="round1">
-                                        <input type="checkbox" id="checkbox1"/>
-                                        <label htmlFor="checkbox1" />
-                                    </div>
-                                </td>
-                                <td>2000s</td>
-                                <td>10s</td>
-                                <td>0.5%</td>
-                                <td>2020-07-01</td>
-                                <td>2020-08-01</td>
-                                <td><i className="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-                            </tr>
+                <table className="table table-borderless">
+                <thead className="thead-light">
+                    <tr>
+                        <th scope="col">Campaign name</th>
+                        <th scope="col"><i className="fa fa-exclamation-circle fa-2x" aria-hidden="true" /></th>
+                        <th scope="col">Overall budget</th>
+                        <th scope="col">Curently used amount</th>
+                        <th scope="col">Curently usage rate</th>
+                        <th scope="col">start date</th>
+                        <th scope="col"> End date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                    <Table col="8" dt = {cp}></Table>
 
-
-
-
-                            <tr>
-                                <th>Summer Ancolho</th>
-                            </tr>
-                
-                            <tr>
-                                <td>
-                                    <div>
-                                        <p>[123]</p>
-                                        <p>DAC Viet Nam sell mark 3D</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="round1">
-                                        <input type="checkbox" id="checkbox2"/>
-                                        <label htmlFor="checkbox2" />
-                                    </div>
-                                </td>
-                                <td>2000s</td>
-                                <td>10s</td>
-                                <td>0.5%</td>
-                                <td>2020-07-01</td>
-                                <td>2020-08-01</td>
-                                <td><i className="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>
-                                        <p>[123]</p>
-                                        <p>DAC Viet Nam sell mark 3D</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="round1">
-                                        <input type="checkbox" id="checkbox12"/>
-                                        <label htmlFor="checkbox12" />
-                                    </div>
-                                </td>
-                                <td>2000s</td>
-                                <td>10s</td>
-                                <td>0.5%</td>
-                                <td>2020-07-01</td>
-                                <td>2020-08-01</td>
-                                <td><i className="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import '../../../../styles/AccountManagerContent.css';
+import Table from './table';
+import data from '../../../../db.json';
 
 export default () => {
+  const accdata= data.accountTable
   return (
     <>
       <div className="account_space">
@@ -84,24 +87,7 @@ export default () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">123</th>
-              <td>DAC VietNam/DHBK</td>
-              <td>dactectvn_hung</td>
-              <td>hung.lb@dactech.vn</td>
-              <td>Applying</td>
-              <td>2020-08-01</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <th scope="row">1235</th>
-              <td>DAC VietNam/DHBK</td>
-              <td>dactectvn_nhat</td>
-              <td>nhat@dactech.vn</td>
-              <td>Applying</td>
-              <td>2020-08-01</td>
-              <td>Unregistered</td>
-            </tr>
+            <Table col="7" dt={accdata}></Table>
           </tbody>
         </table>
       </div>
