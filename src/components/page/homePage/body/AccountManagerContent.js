@@ -74,6 +74,7 @@ export default () => {
 
       </div>
       <div className="list_acc">
+        <button className="btn_adduser">Add new user <i className="fa fa-plus" aria-hidden="true"></i></button>
         <table className="table">
           <thead className="thead-light">
             <tr>

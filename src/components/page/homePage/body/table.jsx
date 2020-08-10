@@ -16,7 +16,10 @@ class table extends React.Component {
               <td>{n.mailaddress}</td>
               <td>{n.status}</td>
               <td>{n.APPROVALDATE}</td>
-              <td><i className="fa fa-external-link" aria-hidden="true"></i></td>
+              <td>
+                <button className="btn_edit">Edit <i className="fa fa-pencil" aria-hidden="true"></i></button>
+                <button className="btn_delete">Delete <i className="fa fa-times" aria-hidden="true"></i></button>
+              </td>
             </tr>
             </>
         })

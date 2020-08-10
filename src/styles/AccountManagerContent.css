@@ -1,3 +1,7 @@
+.list_acc {
+    text-align: left;
+}
+
 .select_group {
     color: black;
     font-weight: 500;
@@ -33,6 +37,34 @@
 .btn_new {
     padding: 10px 30px;
     background-color: rgb(64, 153, 255);
+    color: #fff;
+    font-weight: 500;
+    border: 3px solid #fff;
+    border-radius: 8px;
+}
+
+.btn_adduser {
+    padding: 10px 30px;
+    background-color: rgb(45, 182, 80);
+    color: #fff;
+    font-weight: 500;
+    border: 3px solid #fff;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.btn_edit {
+    padding: 10px 30px;
+    background-color: rgb(204, 230, 62);
+    color: #fff;
+    font-weight: 500;
+    border: 3px solid #fff;
+    border-radius: 8px;
+}
+
+.btn_delete {
+    padding: 10px 30px;
+    background-color: rgb(201, 72, 55);
     color: #fff;
     font-weight: 500;
     border: 3px solid #fff;

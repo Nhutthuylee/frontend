@@ -1,32 +1,51 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../../../styles/Login.css';
-import {Link} from 'react-router-dom';
-import { userActions } from '../../../actions/user.action';
+import {Redirect} from 'react-router-dom';
+// import { userActions } from '../../../actions/user.action';
+import {login} from '../../../reducers/login.reducer';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      username: "",
-      password: "",
-      submitted: false
     }
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    this.setState({ submitted: true });
-    const { username, password } = this.state;
-    const { dispatch } = this.props;
-    if (username && password) {
-      dispatch(userActions.login(username, password));
-    }
+    let {username, password} = this.state;
+    this.props.login(username, password);
+    this.setState({
+      username: '',
+      password: '',
+    })
   }
 
+  LoginSuccess(){
+    localStorage.setItem('login','success')
+      // let user =JSON.parse(localStorage.getItem('logined_user'))
+      
+        return <Redirect  to="/homepage"/>
+        
+      
+      // else if(user.role==1)
+      // {
+        
+      //   return  <Redirect to="/Admin" />
+      // }
+      // else if(user.role==2)
+      // {
+        
+      //   return  <Redirect to="/Colaborator" />
+      // }
+  }
   render() {
-    const { loggingIn } = this.props;
-    const { username, password, submitted } = this.state;
+    // const { loggingIn } = this.props;
+    // const { username, password, submitted } = this.state;
+    let {username, password} = this.state;
+        let {isLoginPending, isLoginSuccess, loginError} = this.props;
     return (
       <>
         <div className="login_space">
@@ -36,32 +55,29 @@ class Login extends React.Component {
                 <h2 className="font-italic">Ad setting</h2>
               </div>
               <form className="login_form" onSubmit={this.handleSubmit}>
-                <div className={(submitted && !username ? ' has-error' : '')}>
+                <div className={(!username ? ' has-error' : '')}>
                   <label htmlFor="username">User name:</label>
                   <input type="text"
                     name="username"
                     placeholder="Username"
-                    pattern="[a-z]{1,15}"
-                    title="Username chỉ chứa chữ cái viết thường và nhiều nhất 15 kí tự" 
+                    required
                     onChange={(event) => { this.setState({ username: event.target.value }) }} />
-                  {submitted && !username &&
-                    <div className="help-block">Username không hợp lệ</div>
-                  }
                 </div>
-                <div className={(submitted && !password ? ' has-error' : '')}>
+                <div className={( !password ? ' has-error' : '')}>
                   <label htmlFor="password">Password:</label>
-                  <input type="password" name="password" placeholder="password" pattern="[a-z0-9]{0-8}" title="password phải trên 8 kí tự ví dụ test1234" onChange={(event) => { this.setState({ password: event.target.value }) }} />
-                  {submitted && !password &&
-                    <div className="help-block">Password không hợp lệ</div>
-                  }
+                  <input type="password" name="password" placeholder="password" required onChange={(event) => { this.setState({ password: event.target.value }) }} />
                 </div>
+
                 <div>
-                  <Link to="/homepage">
+                <div className="message">  
+                            { isLoginSuccess && this.LoginSuccess() }
+                            { loginError && <p>Check PassWord and Username</p> }
+                            {!isLoginSuccess}
+                          </div>
+                  
                   <button>login</button>
-                  {loggingIn &&
-                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" alt="wait" />
-                  }
-                  </Link>
+                  
+                  
                 </div>
 
 
@@ -74,10 +90,19 @@ class Login extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
-  const { loggingIn } = state.authentication;
-  return {
-    loggingIn
+
+  return{
+      isLoginPending: login.isLoginPending,
+      isLoginSuccess: login.isLoginSuccess,
+      loginError: login.loginError,
   }
+
 };
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    login: (username, password) => dispatch(login(username,password))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
