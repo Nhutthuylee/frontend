@@ -14,10 +14,10 @@ function App() {
     <div className = "App" >
         <Router history={history}>
             <Switch>
-                <Route path="/signout" exact component={Login}></Route>
+                {/* <Route path="/signout" exact component={Login}></Route>
                 <Route path="/homepage" exact component={Homepage}></Route>
-                <Route path="/homepage/account" exact component={Homepage}></Route>
-                <Route path="/" component={Login}></Route>
+                <Route path="/homepage/account" exact component={Homepage}></Route> */}
+                <Route path="/" component={Homepage}></Route>
             </Switch>
         </Router>
         

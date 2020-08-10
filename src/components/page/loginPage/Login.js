@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import '../../../styles/Login.css';
 import {Redirect} from 'react-router-dom';
-// import { userActions } from '../../../actions/user.action';
 import {login} from '../../../reducers/login.reducer';
 
 class Login extends React.Component {
@@ -25,25 +24,11 @@ class Login extends React.Component {
 
   LoginSuccess(){
     localStorage.setItem('login','success')
-      // let user =JSON.parse(localStorage.getItem('logined_user'))
       
         return <Redirect  to="/homepage"/>
         
-      
-      // else if(user.role==1)
-      // {
-        
-      //   return  <Redirect to="/Admin" />
-      // }
-      // else if(user.role==2)
-      // {
-        
-      //   return  <Redirect to="/Colaborator" />
-      // }
   }
   render() {
-    // const { loggingIn } = this.props;
-    // const { username, password, submitted } = this.state;
     let {username, password} = this.state;
         let {isLoginPending, isLoginSuccess, loginError} = this.props;
     return (
